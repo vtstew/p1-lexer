@@ -18,8 +18,13 @@ TEST_INVALID(D_invalid_symbol,   "^")
 TEST_INVALID(D_invalid_id,       "_true")
 
 TEST_1TOKEN (C_string,           "\"hi\"",  STRLIT, "\"hi\"")
-TEST_1TOKEN (C_symbol,           "-",       SYM,    "-")
-TEST_INVALID(C_invalid_symbol,   "@")
+TEST_1TOKEN (C_symbol_paren,           "(",       SYM,    "(")
+TEST_1TOKEN (C_symbol_curly,           "}",       SYM,    "}")
+TEST_1TOKEN (C_symbol_bracket,           "[",       SYM,    "[")
+TEST_1TOKEN (C_symbol_comma,           ",",       SYM,    ",")
+TEST_1TOKEN (C_symbol_semicol,           ";",       SYM,    ";")
+TEST_INVALID(C_invalid_symbol,   "#")
+TEST_INVALID(C_invalid_symbol2,   "@")
 TEST_1TOKEN (C_hex,              "0xabcd",  HEXLIT, "0xabcd")
 TEST_2TOKENS(C_multi_tokens,     "123 foo", DECLIT, "123", ID, "foo")
 
@@ -54,8 +59,13 @@ void public_tests (Suite *s)
     TEST(D_invalid_symbol);
     TEST(D_invalid_id);
     TEST(C_string);
-    TEST(C_symbol);
+    TEST(C_symbol_paren);
+    TEST(C_symbol_curly);
+    TEST(C_symbol_bracket);
+    TEST(C_symbol_comma);
+    TEST(C_symbol_semicol);
     TEST(C_invalid_symbol);
+    TEST(C_invalid_symbol2);
     TEST(C_hex);
     TEST(C_multi_tokens);
     TEST(B_keyword);
