@@ -12,15 +12,16 @@ TokenQueue* lex (char* text)
     /* compile regular expressions */
     Regex* keyword = Regex_new("^(def|if|else|while|return|break|continue|int|bool|void|true|false)");
     Regex* reserved = Regex_new("^(for|callout|class|interface|extends|implements|new|this|string|float|double|null)");
-    Regex* whitespace = Regex_new("^[ \n]");
+    Regex* whitespace = Regex_new("^[ \n|\t]");
+    Regex* newline = Regex_new("^\n");
     Regex* letter = Regex_new("^[a-zA-Z]([0-9]|[a-zA-Z]|_)*");
-    Regex* numbers = Regex_new("^0|^[1-9]+");
-    Regex* grouping = Regex_new("\\(|\\)|\\{|\\}|\\[|\\]|\\,|\\;");
-    Regex* symbols = Regex_new("\\+|\\*|=");
-    Regex* or_equal = Regex_new("(<|>|=|!)=");
+    Regex* numbers = Regex_new("^(0|[1-9]+)");
+    Regex* grouping = Regex_new("^(\\(|\\)|\\{|\\}|\\[|\\]|\\,|\\;)");
+    Regex* symbols = Regex_new("^(\\+|\\*|\\=)");
+    Regex* or_equal = Regex_new("^(<|>|=|!)=");
     Regex* strings = Regex_new("^\"([a-zA-Z]|[0-9])*\"");
     Regex* hex = Regex_new("^(0x)([0-9]|[a-f])*");
-    Regex* comment = Regex_new("^\\/\\/");
+    Regex* comment = Regex_new("^(\\/\\/)");
 
 
     int line_count = 1;
@@ -30,10 +31,14 @@ TokenQueue* lex (char* text)
     while (*text != '\0') {
         // printf("%c", *text);
         /* match regular expressions */
+
+        if (Regex_match(newline, text, match)) {
+            line_count++;
+        }
+
+
         if (Regex_match(whitespace, text, match)) {
             /* ignore whitespace */
-            text += strlen(match);
-            printf("%d", 1);
         } else if (Regex_match(comment, text, match)) {
             while (*text != '\n'){
                 text += 1;
@@ -44,13 +49,10 @@ TokenQueue* lex (char* text)
         } else if (Regex_match(hex, text, match)) {
             TokenQueue_add(tokens, Token_new(HEXLIT, match, line_count)); 
         } else if (Regex_match(letter, text, match)) {
-            printf("1 %s\n", text);
             // char* fullText = text;
             if (Regex_match(keyword, text, match)) {
-                printf("2 %s\n", text);
                 TokenQueue_add(tokens, Token_new(KEY, match, line_count)); 
             } else {
-                printf("3 %s\n", text);
                 TokenQueue_add(tokens, Token_new(ID, match, line_count)); 
                 // text += strlen(match);
             }
@@ -84,6 +86,7 @@ TokenQueue* lex (char* text)
     Regex_free(strings);
     Regex_free(hex);
     Regex_free(comment);
+    Regex_free(newline);
  
     return tokens;
 }

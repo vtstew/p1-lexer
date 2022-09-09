@@ -1,22 +1,4 @@
 Running suite(s): Default
-1 a
-3 a
-1 abc
-3 abc
-1 def
-2 def
-1 if
-2 if
-1 true
-2 true
-1 continue
-2 continue
-1 def  ab
-2 def  ab
-11 ab
-3 ab
-85%: Checks: 28, Failures: 3, Errors: 1
-public.c:29:F:Public:C_multi_tokens:0: Assertion 'valid_2tokens("123 foo", DECLIT, "123", ID, "foo")' failed
-public.c:44:F:Public:B_multi_tokens2:0: Assertion 'valid_tokens("def foo;", 3, multi_tokens2)' failed
+92%: Checks: 28, Failures: 1, Errors: 1
 public.c:47:F:Public:A_keyword_id:0: Assertion 'valid_1token("int3", ID, "int3")' failed
 private.c:5:E:Private:A_null_string:0: (after this point) Received signal 11 (Segmentation fault)
