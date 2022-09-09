@@ -1,10 +1,10 @@
 KEYWORD  [line 001]  def
-KEYWORD  [line 002]  int
-ID       [line 003]  main
-SYMBOL   [line 004]  (
-SYMBOL   [line 005]  )
-SYMBOL   [line 006]  {
-SYMBOL   [line 007]  	int a;
-SYMBOL   [line 008]  	a = 4 + 5;
-SYMBOL   [line 009]  	return a;
-SYMBOL   [line 010]  }
+KEYWORD  [line 001]  int
+ID       [line 001]  main
+SYMBOL   [line 001]  (
+SYMBOL   [line 001]  )
+SYMBOL   [line 001]  {
+SYMBOL   [line 001]  	int a;
+SYMBOL   [line 001]  	a = 4 + 5;
+SYMBOL   [line 001]  	return a;
+SYMBOL   [line 001]  }

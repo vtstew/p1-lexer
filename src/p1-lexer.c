@@ -19,7 +19,8 @@ TokenQueue* lex (char* text)
     Regex* symbols = Regex_new("\\+|\\*|=");
     Regex* or_equal = Regex_new("(<|>|=|!)=");
     Regex* strings = Regex_new("^\"([a-zA-Z]|[0-9])*\"$");
-    Regex* hex = Regex_new("0xabcd");
+    Regex* hex = Regex_new("^(0x)([0-9]|[a-f])*");
+
 
     int line_count = 1;
     /* read and handle input */
@@ -33,28 +34,20 @@ TokenQueue* lex (char* text)
             Error_throw_printf("Invalid token!\n");
         } else if (Regex_match(keyword, text, match)) {
             TokenQueue_add(tokens, Token_new(KEY, match, line_count)); 
-            line_count++;
         } else if (Regex_match(hex, text, match)) {
             TokenQueue_add(tokens, Token_new(HEXLIT, match, line_count)); 
-            line_count++;
         } else if (Regex_match(letter, text, match)) {
             TokenQueue_add(tokens, Token_new(ID, match, line_count)); 
-            line_count++;
         } else if (Regex_match(numbers, text, match)) {
             TokenQueue_add(tokens, Token_new(DECLIT, match, line_count)); 
-            line_count++;
         } else if (Regex_match(or_equal, text, match)) {
             TokenQueue_add(tokens, Token_new(SYM, match, line_count)); 
-            line_count++;
         } else if ( Regex_match(grouping, text, match)) {
             TokenQueue_add(tokens, Token_new(SYM, match, line_count)); 
-            line_count++;
         } else if ( Regex_match(symbols, text, match)) {
             TokenQueue_add(tokens, Token_new(SYM, match, line_count)); 
-            line_count++;
         } else if (Regex_match(strings, text, match)) {
             TokenQueue_add(tokens, Token_new(STRLIT, match, line_count)); 
-            line_count++;
         } else {
             Error_throw_printf("Invalid token!\n");
         }
