@@ -1,10 +1,77 @@
-KEYWORD  [line 001]  def
-KEYWORD  [line 001]  int
-ID       [line 001]  main
+1 def int main()
+{
+	int a;
+	a = 4 + 5;
+	return a;
+}
+
+2 def int main()
+{
+	int a;
+	a = 4 + 5;
+	return a;
+}
+
+11 nt main()
+{
+	int a;
+	a = 4 + 5;
+	return a;
+}
+
+3 nt main()
+{
+	int a;
+	a = 4 + 5;
+	return a;
+}
+
+11 ain()
+{
+	int a;
+	a = 4 + 5;
+	return a;
+}
+
+3 ain()
+{
+	int a;
+	a = 4 + 5;
+	return a;
+}
+
+111 int a;
+	a = 4 + 5;
+	return a;
+}
+
+2 int a;
+	a = 4 + 5;
+	return a;
+}
+
+111 a = 4 + 5;
+	return a;
+}
+
+3 a = 4 + 5;
+	return a;
+}
+
+111111 return a;
+}
+
+2 return a;
+}
+
+111KEYWORD  [line 001]  def
+ID       [line 001]  nt
+ID       [line 001]  ain
 SYMBOL   [line 001]  (
 SYMBOL   [line 001]  )
-SYMBOL   [line 001]  {
-SYMBOL   [line 001]  	int a;
-SYMBOL   [line 001]  	a = 4 + 5;
-SYMBOL   [line 001]  	return a;
-SYMBOL   [line 001]  }
+KEYWORD  [line 001]  int
+SYMBOL   [line 001]  ;
+ID       [line 001]  a
+SYMBOL   [line 001]  ;
+KEYWORD  [line 001]  return
+SYMBOL   [line 001]  ;
