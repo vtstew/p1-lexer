@@ -1,1 +1,70 @@
-	a = 4 + 5;
+// // CS 432 PROJECT 0: DECAF PROGRAMMING
+// // Katie Brasacchio
+
+// def int fact(int n)
+// {
+//     int counter;
+//     counter = n - 1;
+
+//     while counter >= 1 {
+//         n = n * counter;
+//         counter = counter - 1;
+//     }
+
+//     return n;
+// }
+
+// def int fib(int n)
+// {
+//     int counter;
+//     int a;
+//     int b;
+//     int c;
+
+//     counter = 2;
+//     a = 1;
+//     b = 1;
+//     c = 0;
+
+//     if n == 1 {
+//         return a;
+//     }
+
+//     if n == 2 {
+//         return b;
+//     }
+
+//     while counter != n {
+//         c = a + b;
+//         a = b;
+//         b = c;
+//         counter = counter + 1;
+//     }
+
+//     return c;
+// }
+
+// def int gcd(int a, int b)
+// {
+//     int answer;
+//     int counter;
+
+//     answer = 0;
+//     counter = 1;
+
+//     while counter <= 200 {
+//         int temp;
+//         temp = 0;
+//         if a % counter == 0 || b % counter == 0 {
+//             temp = counter;
+//             if temp > answer {
+//                 answer = temp;
+//             }
+//         }
+//         counter = counter + 1;
+//     }
+
+//     return answer;
+// }
+
+||

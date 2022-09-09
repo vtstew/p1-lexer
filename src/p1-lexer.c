@@ -15,9 +15,9 @@ TokenQueue* lex (char* text)
     Regex* whitespace = Regex_new("^[ \n|\t]");
     Regex* newline = Regex_new("^\n");
     Regex* letter = Regex_new("^[a-zA-Z]([0-9]|[a-zA-Z]|_)*");
-    Regex* numbers = Regex_new("^(0|[1-9]+)");
+    Regex* numbers = Regex_new("^(0|[1-9]+[0]*)");
     Regex* grouping = Regex_new("^(\\(|\\)|\\{|\\}|\\[|\\]|\\,|\\;)");
-    Regex* symbols = Regex_new("^(\\+|\\*|\\=)");
+    Regex* symbols = Regex_new("^(\\+|\\*|\\=|\\-|\\%|&&|!|>|<)");
     Regex* or_equal = Regex_new("^(<|>|=|!)=");
     Regex* strings = Regex_new("^\"([a-zA-Z]|[0-9])*\"");
     Regex* hex = Regex_new("^(0x)([0-9]|[a-f])*");
@@ -44,6 +44,7 @@ TokenQueue* lex (char* text)
                 text += 1;
             }
             text--;
+            line_count++;
         } else if (Regex_match(reserved, text, match)) {
             Error_throw_printf("Invalid token!\n");
         } else if (Regex_match(hex, text, match)) {
