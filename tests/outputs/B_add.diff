@@ -1,8 +1,8 @@
---- outputs/B_add.txt	2022-09-07 12:48:40.830044859 -0400
+--- outputs/B_add.txt	2022-09-07 13:21:39.141557279 -0400
 +++ expected/B_add.txt	2022-09-07 11:48:46.002690473 -0400
 @@ -1,10 +1,19 @@
--ID       [line 001]  def
--ID       [line 002]  int
+ KEYWORD  [line 001]  def
+-KEYWORD  [line 002]  int
 -ID       [line 003]  main
 -SYMBOL   [line 004]  (
 -SYMBOL   [line 005]  )
@@ -11,7 +11,6 @@
 -SYMBOL   [line 008]  	a = 4 + 5;
 -SYMBOL   [line 009]  	return a;
 -SYMBOL   [line 010]  }
-+KEYWORD  [line 001]  def
 +KEYWORD  [line 001]  int
 +ID       [line 001]  main
 +SYMBOL   [line 001]  (

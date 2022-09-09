@@ -1,8 +1,6 @@
 Running suite(s): Default
-here76%: Checks: 25, Failures: 5, Errors: 1
-public.c:31:F:Public:B_keyword:0: Assertion 'valid_1token("def", KEY, "def")' failed
-public.c:32:F:Public:B_invalid_for:0: Assertion 'invalid_tokens("for")' failed
-public.c:35:F:Public:B_multi_tokens1:0: Assertion 'valid_2tokens("def  ab", KEY, "def", ID, "ab")' failed
-public.c:40:F:Public:B_multi_tokens2:0: Assertion 'valid_tokens("def foo;", 3, multi_tokens2)' failed
-public.c:42:F:Public:A_comments:0: Assertion 'valid_0tokens("// test")' failed
+85%: Checks: 28, Failures: 3, Errors: 1
+public.c:43:F:Public:B_multi_tokens2:0: Assertion 'valid_tokens("def foo;", 3, multi_tokens2)' failed
+public.c:45:F:Public:A_comments:0: Assertion 'valid_0tokens("// test")' failed
+public.c:46:F:Public:A_keyword_id:0: Assertion 'valid_1token("int3", ID, "int3")' failed
 private.c:5:E:Private:A_null_string:0: (after this point) Received signal 11 (Segmentation fault)
