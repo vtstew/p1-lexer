@@ -19,11 +19,12 @@ TokenQueue* lex (char* text)
     Regex* letter = Regex_new("^[a-zA-Z]([0-9]|[a-zA-Z]|_)*");
     Regex* numbers = Regex_new("^(0|[1-9]+[0]*)");
     Regex* grouping = Regex_new("^(\\(|\\)|\\{|\\}|\\[|\\]|\\,|\\;)");
-    Regex* symbols = Regex_new("^(\\+|\\*|\\=|\\-|\\%|&&|!|>|<)");
+    Regex* symbols = Regex_new("^(\\+|\\*|\\=|\\-|\\%|&&|!|>|<|\\/)");
     Regex* or_equal = Regex_new("^(<|>|=|!)=");
-    Regex* strings = Regex_new("^\"([a-zA-Z]|[0-9])*\"");
+    Regex* strings = Regex_new("^\"([a-zA-Z]|[0-9]|\n|\t|\\\"|\\\\|#| |_|:)*\"");
     Regex* hex = Regex_new("^(0x)([0-9]|[a-f])*");
     Regex* comment = Regex_new("^(\\/\\/)");
+    Regex* nullString = Regex_new("^$");
 
 
     int line_count = 1;
@@ -34,12 +35,17 @@ TokenQueue* lex (char* text)
         // printf("%c", *text);
         /* match regular expressions */
 
+
+        if (text == NULL){
+            printf("here");
+            break;
+        }
         if (Regex_match(newline, text, match)) {
             line_count++;
         }
 
 
-        if (Regex_match(whitespace, text, match)) {
+        if (Regex_match(whitespace, text, match) ||  Regex_match(nullString, text, match)) {
             /* ignore whitespace */
         } else if (Regex_match(comment, text, match)) {
             while (*text != '\n'){

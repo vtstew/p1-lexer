@@ -1,70 +1,348 @@
-// // CS 432 PROJECT 0: DECAF PROGRAMMING
-// // Katie Brasacchio
+// CS 432 PROJECT 0: DECAF PROGRAMMING
+//
+// Vivian Stewart
+//
 
-// def int fact(int n)
-// {
-//     int counter;
-//     counter = n - 1;
+def int fact(int n)
+{
+    if (n == 0)
+    {
+        return 1;
+    }
+    return n * fact(n-1);
+}
 
-//     while counter >= 1 {
-//         n = n * counter;
-//         counter = counter - 1;
-//     }
+def int fib(int n)
+{
+    if (n <= 0)
+    {
+        return 0;
+    }
+    if (n == 1)
+    {
+        return 1;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
 
-//     return n;
-// }
+def bool is_prime(int n)
+{
+    int div;
+    div = 2;
+    if (n == 1)
+    {
+        return false;
+    }
+    while (div < n)
+    {
+        if (n % div == 0)
+        {
+            return false;
+        }
+        div = div + 1;
+    }
+    return true;
+    
+}
 
-// def int fib(int n)
-// {
-//     int counter;
-//     int a;
-//     int b;
-//     int c;
+def int gcd(int a, int b)
+{
+    if (a == 0)
+    {
+        return b;
+    }
+    
+    return gcd(b % a , a);
+}
 
-//     counter = 2;
-//     a = 1;
-//     b = 1;
-//     c = 0;
+int nums[100];
 
-//     if n == 1 {
-//         return a;
-//     }
+def int sum_nums(int len)
+{
+    int sum;
+    int i;
+    sum = 0;
+    i = 0;
+    
+    while (i < len)
+    {
+        sum = sum + nums[i];
+        i = i + 1;
+    }
+    return sum;
+}
 
-//     if n == 2 {
-//         return b;
-//     }
+def void sort_nums(int len)
+{
+    
+    int count;
+    int hold;
+    int hold2;
+    int h;
+    count = 0;
 
-//     while counter != n {
-//         c = a + b;
-//         a = b;
-//         b = c;
-//         counter = counter + 1;
-//     }
+    while (count <= len)
+    {
+        hold = count + 1;
+        h = count;
+        while (hold <= len)
+        {
+            if (nums[h] > nums[hold])
+            {
+                h = hold; 
+            }
+            hold = hold + 1;
+        }
+        hold2 = nums[count];
+        nums[count] = nums[h];
+        nums[h] = hold2;
+        count = count + 1;
+    }
 
-//     return c;
-// }
+    return;
+}
 
-// def int gcd(int a, int b)
-// {
-//     int answer;
-//     int counter;
+def void draw_triangle(int base)
+{
+    int count;
+    int row_count;
+    int space_num;
+    count = 0;
 
-//     answer = 0;
-//     counter = 1;
+    if (base == 2)
+    {
+        print_str("##\n");
+        return;
+    }
+    if (base == 1)
+    {
+        print_str("#\n");
+        return;
+    }
 
-//     while counter <= 200 {
-//         int temp;
-//         temp = 0;
-//         if a % counter == 0 || b % counter == 0 {
-//             temp = counter;
-//             if temp > answer {
-//                 answer = temp;
-//             }
-//         }
-//         counter = counter + 1;
-//     }
+    space_num = (base / 2) - 1;
+     while (count < space_num)
+    {
+        print_str(" ");
+        count = count + 1;
+    }
+    count = 0;
+    if (base % 2 == 0)
+    {
+        row_count = 2;
+        print_str("##\n");
+    } 
+    else
+    {
+        space_num = space_num + 1;
+        row_count = 1;
+        print_str(" #\n");   
+    }
 
-//     return answer;
-// }
+    while (row_count < base)
+    {
 
-||
+        count = 0;
+        row_count = row_count + 2;
+
+        space_num = space_num - 1;
+        
+        while (count < space_num)
+        {
+            print_str(" ");
+            count = count + 1;
+        }
+        count = 0;
+
+        while (count < row_count)
+        {
+            print_str("#");
+            count = count + 1;
+        }
+        print_str("\n");
+        
+        count = 0;
+    }
+
+    return;
+}
+
+// testing
+
+def void test_fact()
+{
+    print_str("Test_Fact");
+    print_str("\n");
+    print_str("Expected: 2\nWas: ");
+    print_int(fact(2));
+    print_str("\n");
+    print_str("Expected: 6\nWas: ");
+    print_int(fact(3));
+    print_str("\n");
+    print_str("Expected: 24\nWas: ");
+    print_int(fact(4));
+    print_str("\n");
+    print_str("Expected: 362880\nWas: ");
+    print_int(fact(9));
+    print_str("\n");
+    print_str("\n");
+}
+
+def void test_fib()
+{
+    print_str("Test_Fib");
+    print_str("\n");
+    print_str("Expected: 1\nWas: ");
+    print_int(fib(1));
+    print_str("\n");
+    print_str("Expected: 1\nWas: ");
+    print_int(fib(2));
+    print_str("\n");
+    print_str("Expected: 2\nWas: ");
+    print_int(fib(3));
+    print_str("\n");
+    print_str("Expected: 3\nWas: ");
+    print_int(fib(4));
+    print_str("\n");
+    print_str("Expected: 55\nWas: ");
+    print_int(fib(10));
+    print_str("\n");
+    print_str("\n");
+}
+
+def void test_is_prime()
+{
+    print_str("Test_Is_Prime");
+    print_str("\n");
+    print_str("Expected: 0\nWas: ");
+    print_bool(is_prime(1));
+    print_str("\n");
+    print_str("Expected: 1\nWas: ");
+    print_bool(is_prime(2));
+    print_str("\n");
+    print_str("Expected: 1\nWas: ");
+    print_bool(is_prime(3));
+    print_str("\n");
+    print_str("Expected: 0\nWas: ");
+    print_bool(is_prime(4));
+    print_str("\n");
+    print_str("Expected: 0\nWas: ");
+    print_bool(is_prime(6));
+    print_str("\n");
+    print_str("\n");
+}
+
+def void test_gcd()
+{
+    print_str("Test_GCD");
+    print_str("\n");
+    print_str("Expected: 4\nWas: ");
+    print_int(gcd(8, 12));
+    print_str("\n");
+    print_str("Expected: 6\nWas: ");
+    print_int(gcd(24, 54));
+    print_str("\n");
+    print_str("Expected: 6\nWas: ");
+    print_int(gcd(6, 12));
+    print_str("\n");
+    print_str("Expected: 2\nWas: ");
+    print_int(gcd(2, 12));
+    print_str("\n");
+    print_str("\n");
+}
+
+def void test_sum_nums()
+{
+    print_str("Test_Sum_Nums");
+    print_str("\n");
+    nums[0] = 1;
+    print_str("Expected: 1\nWas: ");
+    print_int(sum_nums(8)); 
+    print_str("\n");
+    nums[3] = 6;
+    print_str("Expected: 7\nWas: ");
+    print_int(sum_nums(8)); 
+    print_str("\n");
+    nums[0] = 2;
+    print_str("Expected: 8\nWas: ");
+    print_int(sum_nums(8)); 
+    print_str("\n");
+    nums[7] = 5;
+    print_str("Expected: 13\nWas: ");
+    print_int(sum_nums(8)); 
+    print_str("\n");
+    print_str("Expected: 0\nWas: ");
+    print_int(sum_nums(0)); 
+    print_str("\n");
+    print_str("\n");
+}
+
+def void test_sort_nums()
+{
+    print_str("Test_Sort_Nums");
+    print_str("\n");
+
+    nums[0] = 9;
+    nums[1] = 3;
+    nums[2] = 8;
+    nums[3] = 1;
+    print_str("Expected: 01389\nWas: ");
+    sort_nums(4);
+    print_int(nums[0]);
+    print_int(nums[1]);
+    print_int(nums[2]);
+    print_int(nums[3]);
+    print_int(nums[4]);
+
+    print_str("\n");
+
+    nums[0] = 9;
+    nums[1] = 7;
+    nums[2] = 8;
+    nums[3] = 1;
+    nums[4] = 2;
+    print_str("Expected: 12789\nWas: ");
+    sort_nums(4);
+    print_int(nums[0]);
+    print_int(nums[1]);
+    print_int(nums[2]);
+    print_int(nums[3]);
+    print_int(nums[4]);
+
+    print_str("\n");
+    print_str("\n");
+}
+
+def void test_draw_triangle()
+{
+    print_str("Test_Draw_Triangle\n");
+    print_str("Expected:\n#\nWas:\n");
+    draw_triangle(1);
+    
+    print_str("Expected:\n##\nWas:\n");
+    draw_triangle(2);
+    
+    print_str("Expected:\n #\n###\nWas:\n");
+    draw_triangle(3);
+    
+    print_str("Expected:\n ##\n####\nWas:\n");
+    draw_triangle(4);
+    
+    print_str("Expected:\n  #\n ###\n#####\nWas:\n");
+    draw_triangle(5);
+    
+    print_str("Expected:\n    #\n   ###\n  #####\n #######\n#########\nWas:\n");
+    draw_triangle(9);
+    
+}
+
+def int main()
+{
+    test_fact();
+    test_fib();
+    test_is_prime();
+    test_gcd();
+    test_sum_nums();
+    test_sort_nums();
+    test_draw_triangle();
+}
