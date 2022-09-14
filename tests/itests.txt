@@ -1,6 +1,6 @@
 B_add                          pass
 Memory leak(s) found. See files listed below for details.
-  - ==654948==    definitely lost
+  - ==142537==    definitely lost
 ========================================
  NOTICE: THIS TESTSUITE IS INCOMPLETE.
 YOU WILL BE GRADED ON OTHER TEST CASES.
