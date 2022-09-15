@@ -8,13 +8,10 @@
 TokenQueue* lex (char* text)
 {
     TokenQueue* tokens = TokenQueue_new();
- 
-    /* || doesn't work and fix that other stupid test case*/
-    
 
     /* compile regular expressions */
     Regex* keyword = Regex_new("^(def|if|else|while|return|break|continue|int|bool|void|true|false)\\b");
-    Regex* reserved = Regex_new("^(for|callout|class|interface|extends|implements|new|this|string|float|double|null)");
+    Regex* reserved = Regex_new("^(for|callout|class|interface|extends|implements|new|this|string|float|double|null)\\b");
     Regex* whitespace = Regex_new("^[ \t]");
     Regex* newline = Regex_new("^\n");
     Regex* letter = Regex_new("^[a-zA-Z]([0-9]|[a-zA-Z]|_)*");
@@ -25,8 +22,6 @@ TokenQueue* lex (char* text)
     Regex* strings = Regex_new("^\"([a-zA-Z]|[0-9]|\n|\t|\\\"|\\\\|#| |_|:)*\"");
     Regex* hex = Regex_new("^(0x)([0-9]|[a-f])*");
     Regex* comment = Regex_new("^(\\/\\/)");
-    Regex* nullString = Regex_new("NULL");
-
 
     int line_count = 1;
     /* read and handle input */
