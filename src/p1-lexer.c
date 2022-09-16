@@ -17,9 +17,9 @@ TokenQueue* lex (char* text)
     Regex* letter = Regex_new("^[a-zA-Z]([0-9]|[a-zA-Z]|_)*");
     Regex* numbers = Regex_new("^(0|[1-9]+[0]*)");
     Regex* grouping = Regex_new("^(\\(|\\)|\\{|\\}|\\[|\\]|\\,|\\;)");
-    Regex* symbols = Regex_new("^(\\+|\\*|\\=|\\-|\\%|&&|!|>|<|\\/)");
+    Regex* symbols = Regex_new("^(\\+|\\*|\\=|\\-|\\%|&&|!|>|<|\\/|\\|\\|)");
     Regex* or_equal = Regex_new("^(<|>|=|!)=");
-    Regex* strings = Regex_new("^\"([a-zA-Z]|[0-9]|\n|\t|\\\"|\\\\|#| |_|:)*\"");
+    Regex* strings = Regex_new("^\"([a-zA-Z]|[0-9]|\n|\t|\\\\\"|\\\\|#| |_|:)*\"");
     Regex* hex = Regex_new("^(0x)([0-9]|[a-f])*");
     Regex* comment = Regex_new("^(\\/\\/)");
 
